@@ -12,6 +12,7 @@ public class Jtclisbar extends Thread {
 
 	String statusHeadline = '';
 	int totalIterations = 1;
+	float barPieces = 5;
 
 	int barLength = 20;
 	char currentIterationChar = '|';
@@ -23,15 +24,20 @@ public class Jtclisbar extends Thread {
 	float percentageDone = 0.00;
 	float spinnerSpeed = 0.25;
 
-	// need to call method 'updateCalculatedValues'
-
 	// Class constructor
 	public Jtclisbar(String headline, int totalIterations){
 		// functionality goes here
+		this.updateCalculatedValues();
 	}
 
 	// Overriding method run
 	public void run(){
 		// functionality goes here
 	}
+
+	private void updateCalculatedValues(){
+		this.barPieces = 100 / this.barLength;
+		this.iterationsLeftString = this.barLength * this.iterationsLeftChar;
+	}
+
 }
