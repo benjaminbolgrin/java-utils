@@ -23,6 +23,7 @@ public class Jtclisbar extends Thread {
 	int currentIteration = 0;
 	float percentageDone = 0.00;
 	float spinnerSpeed = 0.25;
+	char animationStep = '|';
 
 	// Class constructor
 	public Jtclisbar(String headline, int totalIterations){
@@ -33,7 +34,51 @@ public class Jtclisbar extends Thread {
 
 	// Overriding method run
 	public void run(){
-		// functionality goes here
+		System.out.println("\n" + this.statusHeadline);
+		for(int i = 1; this.currentIteration < this.totalIterations; i++;){
+			switch(i){
+				case 1:
+					this.animationStep = this.animationStepOne;
+					break;
+				case 2:
+					this.animationStep = this.animationStepTwo;
+					break;
+				case 3:
+					this.animationStep = this.animationStepThree;
+					break;
+				case 4:
+					this.animationStep = this.animationStepFour;
+					break;
+				case 5:
+					this.animationStep = this.animationStepFive;
+					break;
+				case 6:
+					this.animationStep = this.animationStepSix;
+					break;
+				case 7:
+					this.animationStep = this.animationStepSeven;
+					i -= 7;
+					break;
+			}
+
+			System.out.print("\r" + 
+					this.statusBarPrefix + 
+					this.currentIterationString + 
+					this.animationStep + 
+					this.iterationsLeftString + 
+					this.statusBarSuffix + 
+					this.percentageDone + " ");
+		}
+
+		if(this.currentIteration == this.totalIterations){
+			System.out.print("\r" + this.statusBarPrefix +
+					this.currentIterationString + 
+					this.statusBarSuffix +
+					this.percentageDone + " ");
+			System.out.println();
+			return
+		}
+
 	}
 
 	private void updateCalculatedValues(){
