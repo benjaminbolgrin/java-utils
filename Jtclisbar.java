@@ -26,7 +26,8 @@ public class Jtclisbar extends Thread {
 
 	// Class constructor
 	public Jtclisbar(String headline, int totalIterations){
-		// functionality goes here
+		this.statusHeadline = headline;
+		this.totalIterations = totalIterations;
 		this.updateCalculatedValues();
 	}
 
