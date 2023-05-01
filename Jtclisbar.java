@@ -86,6 +86,9 @@ public class Jtclisbar extends Thread {
 		this.iterationsLeftString = this.barLength * this.iterationsLeftChar;
 	}
 
+	private void updatePercentageDone(){
+		this.percentageDone = this.currentIteration / this.totalIterations * 100;
+
 	private void updateValues(){
 		this.updatePercentageDone();
 		this.updateCurrentIterationString();
