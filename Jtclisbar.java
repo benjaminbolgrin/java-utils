@@ -83,11 +83,24 @@ public class Jtclisbar extends Thread {
 
 	private void updateCalculatedValues(){
 		this.barPieces = 100 / this.barLength;
-		this.iterationsLeftString = this.barLength * this.iterationsLeftChar;
+		// this doesn't work in Java:
+		// this.iterationsLeftString = this.barLength * this.iterationsLeftChar;
 	}
 
 	private void updatePercentageDone(){
 		this.percentageDone = this.currentIteration / this.totalIterations * 100;
+	}
+
+	private void updateCurrentIterationString(){
+		if(this.currentIteration == this.totalIterations){
+			// this doesn't work in Java:
+			// this.currentIterationString = this.barLength * this.currentIterationChar;
+		}else{
+			// this doesn't work in Java:
+			// this.currentIterationString = this.percentageDone / this.barPieces) * this.currentIterationChar;
+		}
+
+	}
 
 	private void updateValues(){
 		this.updatePercentageDone();
