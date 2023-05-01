@@ -102,6 +102,13 @@ public class Jtclisbar extends Thread {
 
 	}
 
+	private void updateIterationsLeftString(){
+		int currentIterStringLength = this.currentIterationString.length();
+		int iterLeftStringLength = this.barLength - currentIterStringLength;
+		// this doesn't work in Java:
+		// this.iterationsLeftString = iterLeftStringLength * this.iterationsLeftChar;
+	}
+
 	private void updateValues(){
 		this.updatePercentageDone();
 		this.updateCurrentIterationString();
