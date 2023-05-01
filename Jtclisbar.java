@@ -1,4 +1,4 @@
-package de.bolben.utils
+package de.bolben.utils;
 
 public class Jtclisbar extends Thread {
 
@@ -76,15 +76,22 @@ public class Jtclisbar extends Thread {
 					this.statusBarSuffix +
 					this.percentageDone + " ");
 			System.out.println();
-			return
+			return;
 		}
 
 	}
 
+	private String buildString(int length, char character){
+		private StringBuilder str = new StringBuilder();
+		for(int i = 0; i < length; i++;){
+			str.append(character);
+		}
+		return str.toString();
+	}
+
 	private void updateCalculatedValues(){
 		this.barPieces = 100 / this.barLength;
-		// this doesn't work in Java:
-		// this.iterationsLeftString = this.barLength * this.iterationsLeftChar;
+		this.iterationsLeftString = buildString(this.barLength, this.iterationsLeftChar);
 	}
 
 	private void updatePercentageDone(){
@@ -93,20 +100,18 @@ public class Jtclisbar extends Thread {
 
 	private void updateCurrentIterationString(){
 		if(this.currentIteration == this.totalIterations){
-			// this doesn't work in Java:
-			// this.currentIterationString = this.barLength * this.currentIterationChar;
+			this.currentIterationString = buildString(this.barLength, this.currentIterationChar);
 		}else{
-			// this doesn't work in Java:
-			// this.currentIterationString = this.percentageDone / this.barPieces) * this.currentIterationChar;
+			private int floorDivision = Math.floor(this.percentageDone / this.barPieces); 
+			this.currentIterationString = buildString(floorDivision, this.currentIterationChar);
 		}
 
 	}
 
 	private void updateIterationsLeftString(){
-		int currentIterStringLength = this.currentIterationString.length();
-		int iterLeftStringLength = this.barLength - currentIterStringLength;
-		// this doesn't work in Java:
-		// this.iterationsLeftString = iterLeftStringLength * this.iterationsLeftChar;
+		private int currentIterStringLength = this.currentIterationString.length();
+		private int iterLeftStringLength = this.barLength - currentIterStringLength;
+		this.iterationsLeftString = buildString(iterLeftStringLength, this.iterationsLeftChar);
 	}
 
 	private void updateValues(){
