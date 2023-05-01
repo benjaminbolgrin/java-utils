@@ -10,20 +10,21 @@ public class Jtclisbar extends Thread {
 	char animationStepSix = '-';
 	char animationStepSeven = '\\';
 
-	String statusHeadline = '';
+	String statusHeadline;
 	int totalIterations = 1;
-	float barPieces = 5;
+	double barPieces = 5;
 
 	int barLength = 20;
 	char currentIterationChar = '|';
 	char iterationsLeftChar = '.';
-	String currentIterationString = '';
+	String currentIterationString;
 	char statusBarPrefix = '[';
 	char statusBarSuffix = ']';
 	int currentIteration = 0;
-	float percentageDone = 0.00;
-	float spinnerSpeed = 0.25;
+	double percentageDone = 0.00;
+	double spinnerSpeed = 0.25;
 	char animationStep = '|';
+	String iterationsLeftString;
 
 	// Class constructor
 	public Jtclisbar(String headline, int totalIterations){
@@ -35,7 +36,7 @@ public class Jtclisbar extends Thread {
 	// Overriding method run
 	public void run(){
 		System.out.println("\n" + this.statusHeadline);
-		for(int i = 1; this.currentIteration < this.totalIterations; i++;){
+		for(int i = 1; this.currentIteration < this.totalIterations; i++){
 			switch(i){
 				case 1:
 					this.animationStep = this.animationStepOne;
@@ -82,8 +83,8 @@ public class Jtclisbar extends Thread {
 	}
 
 	private String buildString(int length, char character){
-		private StringBuilder str = new StringBuilder();
-		for(int i = 0; i < length; i++;){
+		StringBuilder str = new StringBuilder();
+		for(int i = 0; i < length; i++){
 			str.append(character);
 		}
 		return str.toString();
@@ -102,15 +103,15 @@ public class Jtclisbar extends Thread {
 		if(this.currentIteration == this.totalIterations){
 			this.currentIterationString = buildString(this.barLength, this.currentIterationChar);
 		}else{
-			private int floorDivision = Math.floor(this.percentageDone / this.barPieces); 
-			this.currentIterationString = buildString(floorDivision, this.currentIterationChar);
+			double floorDivision = Math.floor(this.percentageDone / this.barPieces); 
+			this.currentIterationString = buildString((int)floorDivision, this.currentIterationChar);
 		}
 
 	}
 
 	private void updateIterationsLeftString(){
-		private int currentIterStringLength = this.currentIterationString.length();
-		private int iterLeftStringLength = this.barLength - currentIterStringLength;
+		int currentIterStringLength = this.currentIterationString.length();
+		int iterLeftStringLength = this.barLength - currentIterStringLength;
 		this.iterationsLeftString = buildString(iterLeftStringLength, this.iterationsLeftChar);
 	}
 
@@ -122,7 +123,7 @@ public class Jtclisbar extends Thread {
 
 	public void setCurrentIteration(int currentIteration){
 		this.currentIteration = currentIteration;
-		this.updateValues;
+		this.updateValues();
 		}
 
 
